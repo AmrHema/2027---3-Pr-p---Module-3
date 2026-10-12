@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRAVO! en français — Module 3 : Je vais au restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #2563eb;
+  --blue2: #0ea5e9;
+  --navy: #102a43;
+  --bg: #f5f8fc;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --border: #e5eaf2;
+  --error: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+  background: linear-gradient(180deg, #eef6ff 0%, var(--bg) 35%, #ffffff 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(135deg, #123a72, #2563eb 60%, #0ea5e9);
+  color: #fff;
+  padding: 20px 16px 17px;
+  box-shadow: 0 6px 24px rgba(15,23,42,.18);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 800;
+  letter-spacing: .5px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 15px;
+  opacity: .93;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.toolbar {
+  max-width: 1200px;
+  margin: 16px auto 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#search {
+  flex: 1;
+  min-width: 210px;
+  padding: 11px 14px;
+  background: #fff;
+  color: #172033;
+  border: 0;
+  outline: none;
+  border-radius: 12px;
+  font: inherit;
+}
+
+.tool-btn {
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, .15);
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 12px;
+  font: inherit;
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tool-btn:hover {
+  background: rgba(255, 255, 255, .27);
+}
+
+/* ================= MAIN ================= */
+main {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 14px 45px;
+}
+
+.intro {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 25px rgba(15,23,42,.06);
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.intro h1 {
+  margin: 0 0 6px;
+  font-size: 23px;
+  color: var(--navy);
+}
+
+.intro p {
+  margin: 5px 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.tip {
+  display: inline-block;
+  margin-top: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 7px 11px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* ================= SECTIONS ================= */
+.section {
+  margin: 22px 0;
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 7px 22px rgba(15,23,42,.05);
+}
+
+.section-head {
+  padding: 15px 18px;
+  background: linear-gradient(90deg, #eaf3ff, #f8fbff);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--navy);
+}
+
+.count {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.grid {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* ================= WORD CARDS ================= */
+.word-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 16px;
+  padding: 14px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+}
+
+.word-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(37,99,235,.13);
+  border-color: #b9d2ff;
+}
+
+.word-card.playing {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96,165,250,.18);
+  background-color: #f8fbff;
+}
+
+.word-card.hidden {
+  display: none;
+}
+
+.fr {
+  font-family: Arial, sans-serif;
+  direction: ltr;
+  text-align: left;
+  font-size: 19px;
+  font-weight: 800;
+  color: #123a72;
+  padding-right: 36px;
+}
+
+.ar {
+  font-size: 16px;
+  font-weight: 600;
+  color: #334155;
+  margin-top: 7px;
+}
+
+.speaker {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 16px;
+}
+
+.word-card:hover .speaker {
+  background: #2563eb;
+  color: #fff;
+}
+
+.meta {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+#msg-box {
+  display: none;
+  background: #fef2f2;
+  color: var(--error);
+  border: 1px solid #fecaca;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+  padding: 0 15px 25px;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width: 600px) {
+  header { padding: 15px 12px 14px; }
+  .brand { font-size: 31px; }
+  .subtitle { font-size: 13px; }
+  main { padding: 0 9px 35px; margin-top: 16px; }
+  .grid { grid-template-columns: 1fr 1fr; gap: 9px; padding: 10px; }
+  .word-card { min-height: 100px; padding: 12px; }
+  .fr { font-size: 17px; }
+  .ar { font-size: 14px; }
+  .section-head h2 { font-size: 17px; }
+  .intro { padding: 15px; }
+  .toolbar { flex-direction: column; }
+  #search, .tool-btn { width: 100%; justify-content: center; }
+}
+
+@media(max-width: 390px) {
+  .grid { grid-template-columns: 1fr; }
+  .brand { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      BRAVO! en français
+    </div>
+    <div class="subtitle">
+      Ensemble Apprenons le français!
+    </div>
+    <div class="subtitle">
+      Module 3 : Je vais au restaurant
+    </div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="ابحث بالفرنسية أو العربية..." aria-label="البحث">
+      <button class="tool-btn" id="repeatBtn" type="button">
+        🔊 نطق الكلمة المحددة
+      </button>
+      <button class="tool-btn" id="stopBtn" type="button">
+        ⏹ إيقاف
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <h1>
+      Module 3 : Je vais au restaurant
+    </h1>
+    <p>
+      اضغط على أي بطاقة لسماع الكلمة الفرنسية.
+      يستخدم الموقع SpeechSynthesis مع تحديد اللغة الفرنسية <b>fr-FR</b> للنطق.
+    </p>
+    <span class="tip">
+      💡 للحصول على أفضل نطق فرنسي، يفضّل استخدام Chrome أو Edge مع توفر صوت فرنسي على الجهاز.
+    </span>
+  </div>
+
+  <div id="msg-box"></div>
+  <div id="sections"></div>
+
+  <div id="noResults" class="no-results">
+    لا توجد كلمات مطابقة لبحثك.
+  </div>
+</main>
+
+<footer>
+  BRAVO! en français · Vocabulaire français – arabe
+</footer>
+
+<script>
+const sections = [
+  {
+    "title": "Noms masculins — أسماء مذكرة",
+    "items": [
+      ["un type","نوع/ نمط"],
+      ["un restaurant","مطعم"],
+      ["un plat","طبق"],
+      ["un repas","وجبة"],
+      ["le petit-déjeuner","الإفطار"],
+      ["le déjeuner","الغداء"],
+      ["le goûter","التصبيره"],
+      ["le dîner","العشاء"],
+      ["un menu","قائمة طعام"],
+      ["un employé","موظف"],
+      ["un sandwich","ساندوتش"],
+      ["un serveur. un garçon.","نادل بالمطعم  (جرسون)"],
+      ["un caissier","موظف الخزينه/ كاشير"],
+      ["un client","زبون"],
+      ["un cuisinier","طباخ"],
+      ["de l'argent","النقود"],
+      ["du sel","ملح"],
+      ["du sucre","سكر"],
+      ["un four","فرن"],
+      ["un avis","رأي"],
+      ["un dessert","تحلية"],
+      ["les ingrédients","المكونات"]
+    ]
+  },
+  {
+    "title": "Noms féminins — أسماء مؤنثة",
+    "items": [
+      ["l'addition","الحساب"],
+      ["la scène","المشهد"],
+      ["une boisson","مشروب"],
+      ["une recette","وصفة/ طريقة عمل"],
+      ["une liste","قائمة"],
+      ["une bouteille","زجاجة"],
+      ["une serveuse","نادلة بالمطعم"],
+      ["une portion de frites","باكت بطاطس مقلية"],
+      ["de la moutarde","مستردة"],
+      ["une quantité","كمية"],
+      ["une pizza 4 fromages","بيتزا"],
+      ["une pizzeria","مطعم  بيتزا"],
+      ["une crêperie","مطعم كريب ( فطائر )"],
+      ["une cafétéria","كافيتريا"],
+      ["de la farine","دقيق"],
+      ["de l'huile","زيت"],
+      ["la vie","الحياه"],
+      ["la caisse","الخزينة"],
+      ["une aventure","مغامرة"],
+      ["des épices","توابل"]
+    ]
+  },
+  {
+    "title": "Des aliments et des boissons — أطعمة ومشروبات",
+    "items": [
+      ["du riz","أرز"],
+      ["du poisson","سمك"],
+      ["du steak","استيك (شرائح لحم)"],
+      ["du kebab","كباب"],
+      ["du hamburger","هامبورجر"],
+      ["du rôti","لحم محمر"],
+      ["du poulet","فراخ"],
+      ["du foul","فول"],
+      ["du pain","خبز"],
+      ["du fromage","جبنة"],
+      ["du camembert","جبن لبن البقر"],
+      ["du yaourt","زبادي"],
+      ["du risotto","أرز إيطالي"],
+      ["du beurre","زبدة"],
+      ["du citron","ليمون"],
+      ["du hachis parmentier","بطاطس باللحمة المفرومة (طبق فرنسي"],
+      ["du chou farci","محشى كرنب"],
+      ["du raisin","عنب"],
+      ["du chocolat","شيكولاتة"],
+      ["du gâteau au chocolat","جاتوه بالشيكولاتة"],
+      ["de l'oignon","بصل"],
+      ["des légumes","خضروات"],
+      ["des fruits","فواكه"],
+      ["des pommes de terre","بطاطس"],
+      ["des concombres","خيار"],
+      ["des tomates","طماطم"],
+      ["des pâtes","معجنات \"مكرونة\""],
+      ["des falafels","فلافل/طعمية"],
+      ["de la salade","سلطة"],
+      ["de la viande","لحم"],
+      ["de la confiture","مربى"],
+      ["de la soupe","شوربة"],
+      ["de la crêpe","كريب (فطيرة)"],
+      ["de la pizza","بيتزا"],
+      ["une baguette","خبز فرنسي طويل"],
+      ["une omelette","بيض مقلي"],
+      ["de la purée","بطاطس مهروسة (بيوريه"],
+      ["de la glace","ايس كريم"],
+      ["de la pastèque","بطيخ"],
+      ["de la molokhia","ملوخية"],
+      ["de la tarte aux fraises","تارت بالفراولة"],
+      ["de la mousse au chocolat","رغوة الشكولاته"],
+      ["des œufs","بيض"],
+      ["des croissants","كرواسون"],
+      ["des frites","بطاطس مقلية"],
+      ["des haricots verts","فاصوليا خضراء"],
+      ["des lentilles","عدس"],
+      ["des spaghettis","مكرونة اسباجتي"],
+      ["des fruits de mer","فواكه البحر"],
+      ["des courgettes farcies","محشي كوسة"],
+      ["des lasagnes","لازانيا (مكرونة إيطالية)"],
+      ["du coca-cola","كوكاكولا"],
+      ["du soda","صودا"],
+      ["du jus de fruits","عصير فواكه"],
+      ["du lait","لبن"],
+      ["du café","قهوة"],
+      ["du café au lait","قهوة بالحليب"],
+      ["du thé","شاي"],
+      ["de la limonade","عصير ليمون"],
+      ["de l'eau minérale","مياه معدنية"]
+    ]
+  },
+  {
+    "title": "Verbes — أفعال",
+    "items": [
+      ["payer","يدفع"],
+      ["demander","يطلب"],
+      ["commander","يوصي بـ"],
+      ["apporter","يُحضر"],
+      ["comparer","يقارن"],
+      ["comprendre","يفهم"],
+      ["servir","يقدم/يخدم"],
+      ["désirer","يرغب"],
+      ["préparer","يعد/يجهز"],
+      ["prendre","يتناول"],
+      ["mettre","يضع"],
+      ["goûter","يتذوق"],
+      ["coûter","يتكلف"],
+      ["donner","يعطي"]
+    ]
+  },
+  {
+    "title": "Adj., adv., prép. et expressions — صفات، ظروف، حروف جر وتعبيرات",
+    "items": [
+      ["bon","جيد"],
+      ["excellent","ممتاز"],
+      ["délicieux","لذيذ"],
+      ["mauvais","سيئ"],
+      ["horrible","بشع/فظيع"],
+      ["chaud","ساخن"],
+      ["froid","بارد"],
+      ["salé","مملح"],
+      ["sucré","مسكر / حلو"],
+      ["épicé","مُتبل"],
+      ["cuit","ناضج/مستوي"],
+      ["préféré","مفضل"],
+      ["rapide","سريع"],
+      ["cher","غالي"],
+      ["frais","طازج"],
+      ["sec","جاف"],
+      ["connu","معروف / مشهور"],
+      ["beaucoup","كثير"],
+      ["passer une commande","يقوم بعمل طلب  (اوردر)"],
+      ["servi avec","مقدم مع"],
+      ["vraiment","حقاً"],
+      ["comme dessert","كتحلية"],
+      ["il faut","يلزم"],
+      ["je ne sais pas","لا أعرف"],
+      ["un peu plus tard","بعد فترة قصيرة"],
+      ["pas du tout","علي الإطلاق"],
+      ["à partir de","بداية من"],
+      ["le pays d'origine","بلد المنشأ/الأصل"],
+      ["payer en espèces","الدفع كاش"],
+      ["payer par carte bancaire","الدفع ببطاقة بنكية (ڤيزا)"],
+      ["placer les clients","يوجه الزبائن إلى أماكنهم"],
+      ["pour moi","من وجهة نظري / بالنسبة لي"]
+    ]
+  }
+];
+
+const container = document.getElementById("sections");
+let selectedCard = null;
+
+function render() {
+  container.innerHTML = "";
+  sections.forEach((section, sIndex) => {
+    const box = document.createElement("section");
+    box.className = "section";
+
+    box.innerHTML = `
+      <div class="section-head">
+        <h2>${section.title}</h2>
+        <span class="count">${section.items.length} كلمة / تعبير</span>
+      </div>
+      <div class="grid"></div>
+    `;
+
+    const grid = box.querySelector(".grid");
+
+    section.items.forEach((item, i) => {
+      const card = document.createElement("article");
+      card.className = "word-card";
+      card.dataset.fr = item[0].toLowerCase();
+      card.dataset.ar = item[1].toLowerCase();
+      card.dataset.index = `${sIndex}-${i}`;
+
+      card.innerHTML = `
+        <span class="speaker">🔊</span>
+        <div class="fr" lang="fr-FR">${escapeHtml(item[0])}</div>
+        <div class="ar" lang="ar">${escapeHtml(item[1])}</div>
+        <div class="meta">اضغط للاستماع · Français</div>
+      `;
+
+      card.addEventListener("click", () => {
+        selectedCard = card;
+        document.querySelectorAll(".word-card.playing").forEach(c => c.classList.remove("playing"));
+        card.classList.add("playing");
+        speakFrench(item[0], card);
+      });
+
+      grid.appendChild(card);
+    });
+
+    container.appendChild(box);
+  });
+}
+
+function escapeHtml(str) {
+  return str.replace(
+    /[&<>"']/g,
+    m => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[m])
+  );
+}
+
+let frenchVoices = [];
+
+function loadFrenchVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  frenchVoices = voices.filter(v => {
+    const lang = (v.lang || "").toLowerCase();
+    return lang === "fr-fr" || lang.startsWith("fr-") || lang === "fr";
+  });
+}
+
+loadFrenchVoices();
+if ("onvoiceschanged" in window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = loadFrenchVoices;
+}
+
+function chooseFrenchVoice() {
+  loadFrenchVoices();
+  return (
+    frenchVoices.find(v => (v.lang || "").toLowerCase() === "fr-fr") ||
+    frenchVoices.find(v => (v.lang || "").toLowerCase().startsWith("fr-fr")) ||
+    frenchVoices.find(v => (v.lang || "").toLowerCase().startsWith("fr")) ||
+    null
+  );
+}
+
+function showMessage(msg) {
+  const msgBox = document.getElementById("msg-box");
+  msgBox.textContent = msg;
+  msgBox.style.display = "block";
+  setTimeout(() => {
+    msgBox.style.display = "none";
+  }, 4000);
+}
+
+function speakFrench(text, card) {
+  if (!("speechSynthesis" in window)) {
+    showMessage("متصفحك لا يدعم خاصية النطق الصوتي.");
+    if (card) card.classList.remove("playing");
+    return;
+  }
+
+  speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  
+  utter.lang = "fr-FR";
+  utter.rate = 0.86;
+  utter.pitch = 1;
+  
+  const voice = chooseFrenchVoice();
+  if (voice) {
+    utter.voice = voice;
+  }
+
+  utter.onend = () => {
+    if (card) card.classList.remove("playing");
+  };
+
+  utter.onerror = (e) => {
+    console.error("SpeechSynthesis Error:", e);
+    if (card) card.classList.remove("playing");
+  };
+
+  speechSynthesis.speak(utter);
+}
+
+document.getElementById("repeatBtn").addEventListener("click", () => {
+  if (selectedCard) {
+    const fr = selectedCard.querySelector(".fr").textContent.trim();
+    speakFrench(fr, selectedCard);
+  } else {
+    showMessage("الرجاء اختيار كلمة أولاً لتكرار نطقها.");
+  }
+});
+
+document.getElementById("stopBtn").addEventListener("click", () => {
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
+  document.querySelectorAll(".word-card.playing").forEach(c => c.classList.remove("playing"));
+});
+
+document.getElementById("search").addEventListener("input", (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  let visible = 0;
+
+  document.querySelectorAll(".word-card").forEach(card => {
+    const match = !q || card.dataset.fr.includes(q) || card.dataset.ar.includes(q);
+    card.classList.toggle("hidden", !match);
+    if (match) visible++;
+  });
+
+  document.querySelectorAll(".section").forEach(sec => {
+    const any = [...sec.querySelectorAll(".word-card")].some(c => !c.classList.contains("hidden"));
+    sec.style.display = any ? "" : "none";
+  });
+
+  document.getElementById("noResults").style.display = visible ? "none" : "block";
+});
+
+// Start rendering the page
+render();
+</script>
+
+</body>
+</html>
